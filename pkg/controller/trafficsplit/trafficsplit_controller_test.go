@@ -106,6 +106,18 @@ func TestReconcile(t *testing.T) {
 	}
 }
 
+func TestNewVSForCR(t *testing) {
+	cr := &splitv1alpha1.TrafficSplit{
+		ObjectMeta: metav1.ObjectMeta{
+			Name:      "simple-ints",
+			Namespace: "default",
+		},
+		Spec: splitv1alpha1.TrafficSplitSpec{},
+	}
+
+	vs := newVSForCR(cr)
+}
+
 type FakeManager struct{}
 
 func (fm FakeManager) Add(manager.Runnable) error                   { return nil }
